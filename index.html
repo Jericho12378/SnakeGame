@@ -10,9 +10,18 @@
 </head>
 <body>
     <div class="container">
-        <canvas id="game-canvas" width="400" height="400">
+        <h2 id="score"></h2>
+        <canvas id="game-canvas" width="400" height="400"></canvas>
+        <div class="button__wrapper">
+            <button class="play" id="play__button" onclick="play()" 
+            disabled onmouseover="this.style.background = 'purple'; 
+            this.style.color = 'white';"
+             onmouseout="this.style.background = ''; 
+             this.style.color = '';
+             ">Play again</button>
 
-        </canvas>
+            <button id="pause__button" class="pause" onclick="pause()">Pause</button>
+        </div>
     </div>
 </body>
 </html>
