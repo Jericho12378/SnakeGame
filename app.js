@@ -6,6 +6,8 @@ let snakeDirection = "right";
 let gameOver = false;
 let score = 0
 let gameScore = document.getElementById("score");
+let highestScore = document.getElementById("highestScore")
+let previousScore = localStorage.getItem("score")
 let snake = [
     {x:10, y:10},
     {x:0, y:0},
@@ -15,9 +17,11 @@ let food = {
     x:240,
     y:320
 }
-setInterval(update, 100)
 
+setInterval(update, 100)
+highestScore.innerHTML += previousScore
 function update() {
+  
   if (gameOver) return;
     let snakeHead = snake[0]
    
@@ -45,7 +49,12 @@ function update() {
     }
   if(snakeHead.x === food.x && snakeHead.y === food.y){
     score++
-    console.log(score)
+    let topScore
+    if(previousScore <= score){
+      topScore = score
+      localStorage.setItem("score", topScore)
+    }
+
     food = {
         x: Math.floor(Math.random() * 400 / 10) * 10,
         y: Math.floor(Math.random() * 400 / 10) * 10
@@ -68,6 +77,7 @@ function update() {
  context.fillStyle = "red"
  context.fillRect(food.x,food.y,10,10)
  gameScore.innerHTML = "Score: " + score
+ 
 }
 
 
